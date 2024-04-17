@@ -20,6 +20,7 @@ export const createUser = async (req, res) => {
     data: {
       email: req.body.email,
       password: req.body.password,
+      role: req.body.role,
       profile: {
         create: {
           name: req.body.name,
