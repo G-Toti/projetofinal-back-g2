@@ -41,3 +41,27 @@ export const createUser = async (req, res) => {
     msg: "Usuário criado com sucesso!",
   });
 };
+
+export const login = async (req, res) => {
+  const user = await prisma.user.findFirst({
+    where: {
+      AND: {
+        email: req.body.email,
+        password: req.body.password,
+      },
+    },
+  });
+
+  if (user === null) {
+    return res.status(403).json({
+      msg: "Email ou senha incorretos.",
+    });
+  }
+
+  const token = generateToken(user);
+  res.json({
+    data: user,
+    token: token,
+    msg: "Login realizado com sucesso!",
+  });
+};
