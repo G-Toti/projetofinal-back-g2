@@ -13,7 +13,7 @@ export const createUser = async (req, res) => {
   if (exists)
     return res.json({
       data: exists,
-      msg: "Erro: Email já cadastrado",
+      msg: "Email já cadastrado. O email é uma chave única e não pode ser cadastrada duas vezes.",
     });
 
   const user = await prisma.user.create({

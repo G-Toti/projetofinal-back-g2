@@ -1,5 +1,6 @@
 import express from "express";
 import * as productController from "../controllers/product.controllers.js";
+import adminLevel from "../middlewares/admin.middleware.js";
 import multer from "multer";
 import path from "path";
 
@@ -17,6 +18,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/", upload.single("image"), productController.createProduct);
+router.post(
+  "/",
+  adminLevel,
+  upload.single("image"),
+  productController.createProduct
+);
 
 export default router;
