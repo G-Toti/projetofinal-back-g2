@@ -70,7 +70,7 @@ Isso irá instalar todas as dependências do package.json
 
 ## Configurando o projeto
 
-No arquivo `.env` deve-se ter as seguintes variáveis de ambiente:
+No arquivo `.env` (caso ele não exista, crie um) deve-se ter as seguintes variáveis de ambiente:
 
 ~~~env
 DATABASE_URL="mysql://root:SenhaDoSeuRoot@localhost:3306/projeto_final_g1?schema=public"
