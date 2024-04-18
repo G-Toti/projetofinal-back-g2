@@ -11,7 +11,7 @@ export const createUser = async (req, res) => {
   });
 
   if (exists)
-    return res.json({
+    return res.status(400).json({
       data: exists,
       msg: "Email já cadastrado. O email é uma chave única e não pode ser cadastrada duas vezes.",
     });
@@ -36,7 +36,7 @@ export const createUser = async (req, res) => {
 
   const token = generateToken(user);
 
-  res.json({
+  res.status(201).json({
     data: user,
     token: token,
     msg: "Usuário criado com sucesso!",
