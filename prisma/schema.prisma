@@ -13,26 +13,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
+model User {
   id        Int     @id @default(autoincrement())
-  email     String  @db.VarChar(60)
+  email     String  @unique @db.VarChar(60)
   password  String  @db.VarChar(45)
-  profile   profile @relation(fields: [profileId], references: [id])
   profileId Int     @unique
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 }
 
-model profile {
+model Profile {
   id     Int    @id @default(autoincrement())
   name   String @db.VarChar(255)
-  cart   cart   @relation(fields: [cartId], references: [id])
+  cart   Cart   @relation(fields: [cartId], references: [id], onDelete: Cascade)
   cartId Int    @unique
-  user   user?
+  user   User?
 }
 
-model cart {
+model Cart {
   id      Int       @id @default(autoincrement())
   product product[]
-  profile profile?
+  profile Profile?
 }
 
 model product {
@@ -43,5 +43,5 @@ model product {
   image       String  @db.VarChar(255)
   stock       Int
   sold        Int
-  cart        cart[]
+  cart        Cart[]
 }
