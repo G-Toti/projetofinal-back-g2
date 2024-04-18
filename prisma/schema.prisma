@@ -17,6 +17,7 @@ model User {
   id        Int     @id @default(autoincrement())
   email     String  @unique @db.VarChar(60)
   password  String  @db.VarChar(45)
+  role      Boolean
   profileId Int     @unique
   profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 }
