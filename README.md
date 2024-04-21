@@ -70,10 +70,19 @@ Isso irá instalar todas as dependências do package.json
 
 ## Configurando o projeto
 
+Para que seu banco de dados funcione, é necessário criar uma base de dados:
+~~~sql
+mysql -u root -p
+
+# insira sua senha
+
+create database nome_da_basededados;
+
+~~~
 No arquivo `.env` (caso ele não exista, crie um) deve-se ter as seguintes variáveis de ambiente:
 
 ~~~env
-DATABASE_URL="mysql://root:SenhaDoSeuRoot@localhost:3306/projeto_final_g1?schema=public"
+DATABASE_URL="mysql://root:SenhaDoSeuRoot@localhost:3306/nome_da_basededados?schema=public"
 
 JWT_SECRET="8b48439f63b654bd3332a3ab4d47fd101f3e1e95e56c74bfe28169674cb89ec50219a8ce65be1aeea32bacc17137d52b8b07d0a95b2618e29c5bb330fb0adc28"
 ~~~
